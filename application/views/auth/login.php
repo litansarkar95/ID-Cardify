@@ -24,7 +24,7 @@
 </head>
 <body>
   <div class="login-box">
-    <h1>MyAdmin Login</h1>
+    <h1>ID Cardify</h1>
     <div class="card login-card">
       
       <!-- CodeIgniter Flash Message (রং বা ভুল হলে মেসেজ দেখানোর জন্য) -->
@@ -57,7 +57,7 @@
 
         <button type="submit" class="btn btn-primary mb-3">Login</button>
         <a href="#" class="d-block mb-3 text-primary text-decoration-none text-center">Forgot Password?</a>
-        <button type="button" class="btn btn-outline-secondary">Find My Company</button>
+        <a href="<?= base_url(); ?>" class="btn btn-outline-secondary">Back Home</a>
       
       <?php echo form_close(); ?>
     </div>

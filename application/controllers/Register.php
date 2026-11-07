@@ -61,9 +61,28 @@ public function store() {
         );
 
 
-        $insert_id =  $this->common_model->save_data("institutions", $data);
+   
 
-        if ($insert_id) {
+        if ($this->common_model->save_data("institutions", $data)) {
+            $institution_id  = $this->common_model->Id;
+
+        // login access
+        $password = $this->input->post('password', TRUE);
+          
+          $login_data = array(
+            'reseller_id'             => $this->input->post('reseller_id') ? $this->input->post('reseller_id') : 0,
+            'institution_id'          => $institution_id ,
+            'user_id '                => $institution_id ,
+            'username'                => $this->input->post('mobile_no', TRUE),
+            'email'                   => $this->input->post('email', TRUE),
+            'phone_no'                => $this->input->post('mobile_no', TRUE),
+            'password'                => password_hash($password , PASSWORD_BCRYPT),
+            'role_id'                 => 3,
+            'active'                  => 1
+        );
+        $this->common_model->save_data("login_credential", $login_data);
+
+
             $this->session->set_flashdata('success', 'প্রতিষ্ঠান সফলভাবে যুক্ত করা হয়েছে!');
             redirect('register');
         } else {

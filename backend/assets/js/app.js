@@ -47,7 +47,7 @@
       const $s = jQuery(this);
       if ($s.hasClass('form-select-sm')) $s.addClass('select2-sm');
       $s.removeClass('form-select form-select-sm').select2({
-        width: '100%',
+        width: this.style.width || '100%',
         placeholder: $s.data('placeholder') || undefined,
         allowClear: !!$s.data('clear'),
         tags: !!$s.data('tags'),

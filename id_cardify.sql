@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2026 at 05:21 PM
+-- Generation Time: Nov 07, 2026 at 07:10 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -95,7 +95,9 @@ CREATE TABLE `institutions` (
 --
 
 INSERT INTO `institutions` (`id`, `reseller_id`, `name`, `name_bn`, `slug`, `type`, `mobile_no`, `email`, `website`, `address`, `signature_name`, `signature_picture`, `picture`, `wallet_balance`, `package_type`, `is_active`, `create_date`) VALUES
-(1, NULL, 'asdsa', 'dssdds', 'asdsa', 'অফিস / কোম্পানি', 'sdads', '', 'ds', '1111', NULL, NULL, NULL, '0.00', 'free', 1, 1794022293);
+(1, NULL, 'asdsa', 'dssdds', 'asdsa', 'অফিস / কোম্পানি', 'sdads', '', 'ds', '1111', NULL, NULL, NULL, '0.00', 'free', 1, 1794022293),
+(2, NULL, 'Labiba IT', 'লাবিবা আইটি', 'labiba-it', 'স্কুল / কলেজ / মাদ্রাসা', '01829107584', 'labibait4@gmail.com', 'www.labibait.com', 'Dhaka', NULL, NULL, 'আজিজ_চাচা_cdd990a4.jpg', '0.00', 'free', 1, 1794070486),
+(3, NULL, 'Labiba IT', 'লাবিবা আইটি', 'labiba-it-1', 'স্কুল / কলেজ / মাদ্রাসা', '01829107584', 'labibait4@gmail.com', 'www.labibait.com', 'Dhaka', NULL, NULL, 'আজিজ_চাচা_cdd990a41.jpg', '0.00', 'free', 1, 1794070514);
 
 -- --------------------------------------------------------
 
@@ -111,7 +113,9 @@ CREATE TABLE `institution_field_groups` (
   `slug` varchar(255) NOT NULL,
   `name` varchar(250) NOT NULL COMMENT 'গ্রুপের নাম, ইনস্টিটিউট বাংলা বা ইংরেজি যেকোনো ভাষায় দিতে পারবে',
   `description` text DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+  `status` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_at` int(11) NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -161,7 +165,8 @@ CREATE TABLE `login_credential` (
 
 INSERT INTO `login_credential` (`id`, `reseller_id`, `institution_id`, `user_id`, `username`, `email`, `phone_no`, `password`, `role_id`, `otp_code`, `otp_expiry`, `remember_token`, `active`, `last_login`, `last_login_ip`, `created_at`, `updated_at`) VALUES
 (1, 0, 0, 1, 'superadmin', 'superadmin@saas.com', '01700000000', '$2y$10$sYVcvML0jteteUdNfzNCyephsQ.KQxvyXXXNMEWNMHV8UoZLAxf1i', 1, NULL, NULL, NULL, 1, NULL, NULL, '2026-11-06 08:56:59', '2026-11-06 18:37:06'),
-(2, 1, 0, 2, 'reseller', 'reseller@gmail.com', '01700000000', '$2y$10$sYVcvML0jteteUdNfzNCyephsQ.KQxvyXXXNMEWNMHV8UoZLAxf1i', 2, NULL, NULL, NULL, 1, '2026-11-06 18:42:31', '::1', '2026-11-06 08:56:59', '2026-11-06 18:42:31');
+(2, 1, 0, 2, 'reseller', 'reseller@gmail.com', '01700000000', '$2y$10$sYVcvML0jteteUdNfzNCyephsQ.KQxvyXXXNMEWNMHV8UoZLAxf1i', 2, NULL, NULL, NULL, 1, '2026-11-06 18:42:31', '::1', '2026-11-06 08:56:59', '2026-11-06 18:42:31'),
+(3, 0, 3, 3, '018', NULL, '01829107584', '$2y$10$P4BmM.cIpobQYp0EKk3uZu/ot59zViVhmMJheEgs2iElP2rdlvxVq', 3, NULL, NULL, NULL, 1, '2026-11-07 22:57:02', '::1', '2026-11-07 22:55:14', '2026-11-07 22:57:02');
 
 -- --------------------------------------------------------
 
@@ -317,7 +322,7 @@ ALTER TABLE `fields_master`
 -- AUTO_INCREMENT for table `institutions`
 --
 ALTER TABLE `institutions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `institution_field_groups`
@@ -335,7 +340,7 @@ ALTER TABLE `institution_field_settings`
 -- AUTO_INCREMENT for table `login_credential`
 --
 ALTER TABLE `login_credential`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `module_types`
