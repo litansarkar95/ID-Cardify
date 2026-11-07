@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Settings – ID Studio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body data-active="settings">
+
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <i class="bi bi-person-vcard-fill logo"></i><span class="brand-text">ID Studio</span>
+        <button class="sidebar-close" id="closeSidebar" aria-label="Close menu"><i class="bi bi-x-lg"></i></button>
+      </div>
+      <ul class="menu">
+        <li><a class="menu-link" href="index.html"><i class="icon bi bi-house-fill"></i><span class="label">Dashboard</span></a></li>
+        <li><a class="menu-link" href="badge-maker.html"><i class="icon bi bi-person-vcard"></i><span class="label">Badge Maker</span></a></li>
+        <li><a class="menu-link" href="designs.html"><i class="icon bi bi-collection"></i><span class="label">My Designs</span></a></li>
+        <li><a class="menu-link" href="templates.html"><i class="icon bi bi-grid-1x2"></i><span class="label">Templates</span></a></li>
+        <li><a class="menu-link" href="customers.html"><i class="icon bi bi-person-lines-fill"></i><span class="label">Customers</span></a></li>
+        <li><a class="menu-link" href="cardholders.html"><i class="icon bi bi-people"></i><span class="label">Cardholders</span></a></li>
+        <li><a class="menu-link" href="bulk-import.html"><i class="icon bi bi-file-earmark-arrow-up"></i><span class="label">Bulk Import</span></a></li>
+        <li><a class="menu-link" href="orders.html"><i class="icon bi bi-bag-check"></i><span class="label">Orders</span></a></li>
+        <li><a class="menu-link" href="accessories.html"><i class="icon bi bi-shop"></i><span class="label">Accessories</span></a></li>
+        <li>
+          <a class="menu-link" data-bs-toggle="collapse" href="#sub-staff" aria-expanded="false">
+            <i class="icon bi bi-people-fill"></i><span class="label">Staff</span><i class="bi bi-chevron-left chev"></i>
+          </a>
+          <ul class="submenu collapse" id="sub-staff">
+            <li><a href="staff.html">Staff List</a></li>
+            <li><a href="roles.html">Roles &amp; Permissions</a></li>
+          </ul>
+        </li>
+        <li><a class="menu-link active" href="settings.html"><i class="icon bi bi-gear-fill"></i><span class="label">Settings</span></a></li>
+        <li><a class="menu-link" href="#"><i class="icon bi bi-life-preserver"></i><span class="label">Help</span></a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="foot-text"><strong>ID Studio</strong><small>Pro plan</small></div>
+        <div class="storage-bar"><span></span></div>
+      </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="main-wrapper">
+    <header class="topbar" id="topbar">
+      <button class="toggle-btn" id="toggleSidebar" aria-label="Toggle menu"><i class="bi bi-text-indent-left"></i></button>
+      <div class="search-box">
+        <input type="text" placeholder="To search for...">
+        <i class="bi bi-search"></i>
+      </div>
+      <button class="quick-add hide-xs" title="Quick add"><i class="bi bi-plus"></i></button>
+
+      <div class="actions">
+        <div class="live-clock hide-xs" title="Current time">
+          <i class="bi bi-clock"></i>
+          <div><strong id="clockTime">--:--:--</strong><small id="clockDate"></small></div>
+        </div>
+        <button class="icon-btn plain hide-xs"><i class="bi bi-share"></i></button>
+        <button class="icon-btn plain hide-xs"><i class="bi bi-check2"></i></button>
+
+        <!-- Profile -->
+        <div class="dropdown">
+          <button class="profile-toggle" data-bs-toggle="dropdown" data-bs-offset="0,6" aria-expanded="false" aria-label="Profile">
+            <img class="avatar" src="img/avatar.svg" alt="Rajni Superadmin">
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end profile-menu">
+            <li class="profile-head">
+              <img src="img/avatar.svg" alt="">
+              <div><strong>Rajni Superadmin</strong><small>Super Admin</small></div>
+            </li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> My Profile</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-clock-history"></i> My timesheets</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Edit Profile</a></li>
+            <li class="dropdown-submenu">
+              <a class="dropdown-item" href="#" data-submenu><i class="bi bi-translate"></i> Language <i class="bi bi-chevron-left arrow"></i></a>
+              <ul class="sub list-unstyled">
+                <li><a class="dropdown-item checked" href="#">English</a></li>
+                <li><a class="dropdown-item" href="#">বাংলা</a></li>
+                <li><a class="dropdown-item" href="#">हिन्दी</a></li>
+                <li><a class="dropdown-item" href="#">Español</a></li>
+              </ul>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item logout" href="login.html"><i class="bi bi-box-arrow-right"></i> To go out</a></li>
+          </ul>
+        </div>
+
+        <button class="icon-btn hide-xs"><i class="bi bi-clock"></i></button>
+        <button class="icon-btn"><i class="bi bi-bell"></i><span class="dot"></span></button>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="mx-auto" style="max-width:980px">
+        <h1 class="page-title">Settings</h1>
+        <form class="card" onsubmit="return false">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#s-co" type="button">Company</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#s-card" type="button">Card defaults</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#s-ship" type="button">Shipping</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#s-note" type="button">Notifications</button></li>
+          </ul>
+          <div class="card-body tab-content">
+            <div class="tab-pane fade show active" id="s-co">
+              <div class="photo-up mb-3"><div class="pv" style="width:84px;height:84px;border-radius:12px"><i class="bi bi-building"></i></div><div><label class="btn btn-light border btn-sm mb-1" for="logoUp"><i class="bi bi-upload"></i> Upload logo</label><input type="file" id="logoUp" accept="image/*" class="d-none"><div class="small text-muted">PNG with transparent background works best</div></div></div>
+              <div class="row g-3 mb-3"><div class="col-md-6"><label class="form-label"><span class="req">*</span>Company name</label><input type="text" class="form-control" value="Acme Corp"></div><div class="col-md-6"><label class="form-label">Website</label><input type="text" class="form-control" placeholder="https://"></div></div>
+              <div class="row g-3 mb-3"><div class="col-md-6"><label class="form-label">E-mail</label><input type="email" class="form-control" value="hello@acme.com"></div><div class="col-md-6"><label class="form-label">Phone</label><input type="text" class="form-control"></div></div>
+              <div><label class="form-label">Address</label><textarea class="form-control" rows="3"></textarea></div>
+            </div>
+            <div class="tab-pane fade" id="s-card">
+              <div class="row g-3 mb-3"><div class="col-md-6"><label class="form-label">Default card size</label><select class="form-select"><option selected>CR80 – Landscape (3.375 × 2.125 in)</option><option>CR80 – Portrait</option><option>CR79</option></select></div>
+                <div class="col-md-6"><label class="form-label">Default code</label><select class="form-select"><option selected>QR code</option><option>Barcode</option><option>None</option></select></div></div>
+              <div class="mb-3"><label class="form-label">Default colour theme</label><div class="d-flex gap-2 flex-wrap"><label class="swatch" style="--sw:#2563eb" title="Blue"><input type="radio" name="dtheme" value="t-blue" checked><span></span></label><label class="swatch" style="--sw:#16a34a" title="Green"><input type="radio" name="dtheme" value="t-green" ><span></span></label><label class="swatch" style="--sw:#dc2626" title="Red"><input type="radio" name="dtheme" value="t-red" ><span></span></label><label class="swatch" style="--sw:#334155" title="Dark"><input type="radio" name="dtheme" value="t-dark" ><span></span></label><label class="swatch" style="--sw:#7c3aed" title="Purple"><input type="radio" name="dtheme" value="t-purple" ><span></span></label><label class="swatch" style="--sw:#ea580c" title="Orange"><input type="radio" name="dtheme" value="t-orange" ><span></span></label></div></div>
+              <div class="row g-3 mb-3"><div class="col-md-6"><label class="form-label">Card valid for</label><select class="form-select"><option>1 year</option><option selected>2 years</option><option>3 years</option><option>5 years</option></select></div>
+                <div class="col-md-6"><label class="form-label">ID number prefix</label><input type="text" class="form-control" value="EMP-"></div></div>
+              <div class="form-check form-switch mb-2"><input class="form-check-input" type="checkbox" id="d1" checked><label class="form-check-label" for="d1">Show photo on card</label></div>
+              <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="d2" checked><label class="form-check-label" for="d2">Enable public card verification page (QR code link)</label></div>
+            </div>
+            <div class="tab-pane fade" id="s-ship">
+              <div class="row g-3 mb-3"><div class="col-md-6"><label class="form-label">Contact name</label><input type="text" class="form-control"></div><div class="col-md-6"><label class="form-label">Phone</label><input type="text" class="form-control"></div></div>
+              <div class="mb-3"><label class="form-label">Street address</label><input type="text" class="form-control"></div>
+              <div class="row g-3 mb-3"><div class="col-md-4"><label class="form-label">City</label><input type="text" class="form-control"></div><div class="col-md-4"><label class="form-label">State / Region</label><input type="text" class="form-control"></div><div class="col-md-4"><label class="form-label">ZIP / Postal code</label><input type="text" class="form-control"></div></div>
+              <div><label class="form-label">Default shipping method</label><select class="form-select"><option selected>Standard (3–5 days)</option><option>Express (1–2 days)</option><option>Pickup</option></select></div>
+            </div>
+            <div class="tab-pane fade" id="s-note">
+              <div class="form-check form-switch mb-2"><input class="form-check-input" type="checkbox" id="n1" checked><label class="form-check-label" for="n1">E-mail me when an order ships</label></div>
+              <div class="form-check form-switch mb-2"><input class="form-check-input" type="checkbox" id="n2" checked><label class="form-check-label" for="n2">E-mail me when a card is about to expire</label></div>
+              <div class="form-check form-switch mb-2"><input class="form-check-input" type="checkbox" id="n3"><label class="form-check-label" for="n3">Weekly summary</label></div>
+              <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="n4"><label class="form-check-label" for="n4">Promotions and new templates</label></div>
+            </div>
+          </div>
+          <div class="card-footer bg-white text-end py-3"><button type="button" class="btn btn-light border me-2">Cancel</button><button type="submit" class="btn btn-primary"><i class="bi bi-check2"></i> Save changes</button></div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

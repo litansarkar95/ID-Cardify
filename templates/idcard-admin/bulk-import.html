@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bulk Import – ID Studio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body data-active="import">
+
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <i class="bi bi-person-vcard-fill logo"></i><span class="brand-text">ID Studio</span>
+        <button class="sidebar-close" id="closeSidebar" aria-label="Close menu"><i class="bi bi-x-lg"></i></button>
+      </div>
+      <ul class="menu">
+        <li><a class="menu-link" href="index.html"><i class="icon bi bi-house-fill"></i><span class="label">Dashboard</span></a></li>
+        <li><a class="menu-link" href="badge-maker.html"><i class="icon bi bi-person-vcard"></i><span class="label">Badge Maker</span></a></li>
+        <li><a class="menu-link" href="designs.html"><i class="icon bi bi-collection"></i><span class="label">My Designs</span></a></li>
+        <li><a class="menu-link" href="templates.html"><i class="icon bi bi-grid-1x2"></i><span class="label">Templates</span></a></li>
+        <li><a class="menu-link" href="customers.html"><i class="icon bi bi-person-lines-fill"></i><span class="label">Customers</span></a></li>
+        <li><a class="menu-link" href="cardholders.html"><i class="icon bi bi-people"></i><span class="label">Cardholders</span></a></li>
+        <li><a class="menu-link active" href="bulk-import.html"><i class="icon bi bi-file-earmark-arrow-up"></i><span class="label">Bulk Import</span></a></li>
+        <li><a class="menu-link" href="orders.html"><i class="icon bi bi-bag-check"></i><span class="label">Orders</span></a></li>
+        <li><a class="menu-link" href="accessories.html"><i class="icon bi bi-shop"></i><span class="label">Accessories</span></a></li>
+        <li>
+          <a class="menu-link" data-bs-toggle="collapse" href="#sub-staff" aria-expanded="false">
+            <i class="icon bi bi-people-fill"></i><span class="label">Staff</span><i class="bi bi-chevron-left chev"></i>
+          </a>
+          <ul class="submenu collapse" id="sub-staff">
+            <li><a href="staff.html">Staff List</a></li>
+            <li><a href="roles.html">Roles &amp; Permissions</a></li>
+          </ul>
+        </li>
+        <li><a class="menu-link" href="settings.html"><i class="icon bi bi-gear-fill"></i><span class="label">Settings</span></a></li>
+        <li><a class="menu-link" href="#"><i class="icon bi bi-life-preserver"></i><span class="label">Help</span></a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="foot-text"><strong>ID Studio</strong><small>Pro plan</small></div>
+        <div class="storage-bar"><span></span></div>
+      </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="main-wrapper">
+    <header class="topbar" id="topbar">
+      <button class="toggle-btn" id="toggleSidebar" aria-label="Toggle menu"><i class="bi bi-text-indent-left"></i></button>
+      <div class="search-box">
+        <input type="text" placeholder="To search for...">
+        <i class="bi bi-search"></i>
+      </div>
+      <button class="quick-add hide-xs" title="Quick add"><i class="bi bi-plus"></i></button>
+
+      <div class="actions">
+        <div class="live-clock hide-xs" title="Current time">
+          <i class="bi bi-clock"></i>
+          <div><strong id="clockTime">--:--:--</strong><small id="clockDate"></small></div>
+        </div>
+        <button class="icon-btn plain hide-xs"><i class="bi bi-share"></i></button>
+        <button class="icon-btn plain hide-xs"><i class="bi bi-check2"></i></button>
+
+        <!-- Profile -->
+        <div class="dropdown">
+          <button class="profile-toggle" data-bs-toggle="dropdown" data-bs-offset="0,6" aria-expanded="false" aria-label="Profile">
+            <img class="avatar" src="img/avatar.svg" alt="Rajni Superadmin">
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end profile-menu">
+            <li class="profile-head">
+              <img src="img/avatar.svg" alt="">
+              <div><strong>Rajni Superadmin</strong><small>Super Admin</small></div>
+            </li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> My Profile</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-clock-history"></i> My timesheets</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Edit Profile</a></li>
+            <li class="dropdown-submenu">
+              <a class="dropdown-item" href="#" data-submenu><i class="bi bi-translate"></i> Language <i class="bi bi-chevron-left arrow"></i></a>
+              <ul class="sub list-unstyled">
+                <li><a class="dropdown-item checked" href="#">English</a></li>
+                <li><a class="dropdown-item" href="#">বাংলা</a></li>
+                <li><a class="dropdown-item" href="#">हिन्दी</a></li>
+                <li><a class="dropdown-item" href="#">Español</a></li>
+              </ul>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item logout" href="login.html"><i class="bi bi-box-arrow-right"></i> To go out</a></li>
+          </ul>
+        </div>
+
+        <button class="icon-btn hide-xs"><i class="bi bi-clock"></i></button>
+        <button class="icon-btn"><i class="bi bi-bell"></i><span class="dot"></span></button>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="mx-auto" style="max-width:980px">
+        <h1 class="page-title">Bulk Import Cardholders</h1>
+        <ul class="nav stepper" role="tablist">
+          <li class="nav-item flex-fill"><button class="nav-link active w-100" id="st1" data-bs-toggle="pill" data-bs-target="#p1" type="button"><span class="n">1</span> Upload file</button></li>
+          <li class="nav-item flex-fill"><button class="nav-link w-100" id="st2" data-bs-toggle="pill" data-bs-target="#p2" type="button"><span class="n">2</span> Match columns</button></li>
+          <li class="nav-item flex-fill"><button class="nav-link w-100" id="st3" data-bs-toggle="pill" data-bs-target="#p3" type="button"><span class="n">3</span> Choose design</button></li>
+          <li class="nav-item flex-fill"><button class="nav-link w-100" id="st4" data-bs-toggle="pill" data-bs-target="#p4" type="button"><span class="n">4</span> Review</button></li>
+        </ul>
+
+        <div class="card"><div class="card-body tab-content">
+          <div class="tab-pane fade show active" id="p1">
+            <div class="row g-4">
+              <div class="col-lg-7"><label class="dropzone-box d-block" for="csvFile"><i class="bi bi-cloud-arrow-up"></i><div class="fw-semibold mt-2">Click to choose a CSV or Excel file</div><div class="text-muted small">or drag and drop it here · up to 5,000 rows</div><input type="file" id="csvFile" accept=".csv,.xlsx,.xls" class="d-none"></label></div>
+              <div class="col-lg-5">
+                <h6>Before you upload</h6>
+                <ul class="text-muted ps-3 mb-3"><li>First row must be column names</li><li>Required: name and ID number</li><li>Photo column can hold a file name or a URL</li></ul>
+                <a href="#" class="btn btn-light border btn-sm"><i class="bi bi-download"></i> Download sample CSV</a>
+                <div class="form-check mt-3"><input class="form-check-input" type="checkbox" id="skipDup" checked><label class="form-check-label" for="skipDup">Skip rows with a duplicate ID number</label></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="p2">
+            <p class="text-muted">Tell us which column in your file matches each card field.</p>
+            <div class="table-responsive"><table class="table plain mb-0" style="min-width:520px"><thead><tr><th>Your column</th><th>Sample</th><th style="width:240px">Card field</th></tr></thead><tbody>
+              <tr><td>full_name</td><td>Amelia Brooks</td><td><select class="form-select"><option selected>Full name</option><option>First name</option><option>Last name</option><option>Skip</option></select></td></tr>
+              <tr><td>emp_id</td><td>EMP-10231</td><td><select class="form-select"><option selected>ID number</option><option>Full name</option><option>Skip</option></select></td></tr>
+              <tr><td>dept</td><td>Engineering</td><td><select class="form-select"><option selected>Group / Department</option><option>Title / Grade</option><option>Skip</option></select></td></tr>
+              <tr><td>role</td><td>Engineer</td><td><select class="form-select"><option selected>Title / Grade</option><option>Group / Department</option><option>Skip</option></select></td></tr>
+              <tr><td>photo</td><td>amelia.jpg</td><td><select class="form-select"><option selected>Photo</option><option>Skip</option></select></td></tr>
+              <tr><td>expiry</td><td>2027-12-31</td><td><select class="form-select"><option selected>Valid until</option><option>Skip</option></select></td></tr>
+            </tbody></table></div>
+          </div>
+
+          <div class="tab-pane fade" id="p3">
+            <div class="row g-4 align-items-center">
+              <div class="col-lg-6"><label class="form-label">Design to use for all rows</label>
+                <select class="form-select"><option selected>Employee Badge 2026</option><option>Student ID – Grade 8</option><option>Doctor ID</option><option>Visitor Pass</option></select>
+                <div class="form-check mt-3"><input class="form-check-input" type="checkbox" id="addQ" checked><label class="form-check-label" for="addQ">Add all new cardholders to the print queue</label></div></div>
+              <div class="col-lg-6 d-flex justify-content-center"><div class="id-card t-blue  " data-code="qr"><div class="hd"><span class="lg"><i class="bi bi-building"></i></span><b class="v-co">Acme Corp</b><span class="kind v-kind">Employee</span></div><div class="bd"><div class="ph"><i class="bi bi-person-fill"></i></div><div class="info"><div class="nm v-nm">John Carter</div><div class="tt v-tt">Software Engineer</div><div class="rw">ID: <span class="v-id">EMP-10234</span><br><span class="v-dp">Engineering</span><br>Valid: <span class="v-vl">12/2027</span></div></div></div><i class="bi bi-qr-code code"></i><div class="bar-sm bars"></div><div class="ft"></div></div></div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="p4">
+            <div class="row text-center g-3 mb-3">
+              <div class="col-4"><h3 class="mb-0 text-success">118</h3><span class="text-muted">Ready to import</span></div>
+              <div class="col-4"><h3 class="mb-0 text-warning">4</h3><span class="text-muted">Duplicates skipped</span></div>
+              <div class="col-4"><h3 class="mb-0 text-danger">2</h3><span class="text-muted">Rows with errors</span></div>
+            </div>
+            <div class="alert alert-warning py-2"><i class="bi bi-exclamation-triangle me-1"></i> 2 rows have no ID number and will be skipped. <a href="#">Download error list</a></div>
+          </div>
+        </div>
+        <div class="card-footer bg-white d-flex justify-content-between py-3">
+          <button class="btn btn-light border" onclick="var n=document.querySelector('.stepper .active').id.slice(2);if(n>1)document.getElementById('st'+(n-1)).click()"><i class="bi bi-arrow-left"></i> Back</button>
+          <button class="btn btn-primary" onclick="var n=+document.querySelector('.stepper .active').id.slice(2);if(n<4)document.getElementById('st'+(n+1)).click();else window.location='cardholders.html'">Next <i class="bi bi-arrow-right"></i></button>
+        </div></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
