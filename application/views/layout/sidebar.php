@@ -10,16 +10,17 @@
                     >
                 </li>
        <?php 
-                    $id_card_setup = ['field_groups_settings', 'sections','subject','subject_group', 'academic_years'];
+                    $id_card_setup = ['field_settings', 'field_groups','subject','subject_group', 'academic_years'];
                     $is_active = in_array($active, $id_card_setup);
                 ?>
                  <li >
-                    <a class="menu-link <?php echo ($active == 'field_groups_settings') ? 'active' : ''; ?>" data-bs-toggle="collapse" href="#sub-id_card_setup" aria-expanded="<?php echo $is_active ? 'true' : 'false'; ?>">
+                    <a class="menu-link <?php echo $is_active ? 'active' : ''; ?> " data-bs-toggle="collapse" href="#sub-id_card_setup" aria-expanded="<?php echo $is_active ? 'true' : 'false'; ?>">
                         <i class="icon bi bi-person-vcard"></i><span class="label">ID Card Setup</span
                         ><i class="bi bi-chevron-left chev"></i>
                     </a>
                     <ul class="submenu collapse <?php echo $is_active ? 'show' : ''; ?>" id="sub-id_card_setup">
-                        <li><a href="<?= base_url(); ?>cardManagement/fieldSettings" class="<?php echo ($active == 'field_groups_settings') ? 'active' : ''; ?>">Field Groups Settings</a></li>
+                        <!-- <li><a href="<?= base_url(); ?>cardManagement/fieldSettings" class="<?php echo ($active == 'field_settings') ? 'active' : ''; ?>">Field Settings</a></li> -->
+                        <li><a href="<?= base_url(); ?>cardManagement/fieldgroups" class="<?php echo ($active == 'field_groups') ? 'active' : ''; ?>">Field Groups </a></li>
                         <li><a href="roles.html">Field Assignment</a></li>
                         <li><a href="roles.html">Applications</a></li>
                         <li><a href="roles.html">Master Fields</a></li>

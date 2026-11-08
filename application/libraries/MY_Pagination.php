@@ -114,41 +114,39 @@ class MY_Pagination {
         return array_unique($pages);
     }
 
-    protected function page_link_html($page, $label, $class = "", $disabled = false) {
-        if ($disabled) {
-            return '<a href="#" class="disabled" onclick="return false;">' . $label . '</a>';
-        }
-
+   protected function page_link_html($page, $label, $class = "", $disabled = false) {
         $page = (int) $page;
-        $action = html_escape($this->action);
         $page_field = html_escape($this->page_field);
-        $per_page_field = html_escape($this->per_page_field);
-        $per_page = (int) $this->per_page;
-        $active_class = ($class !== "") ? ' class="' . $class . '"' : '';
-
         $js_click = "document.getElementById('globalPaginationForm').{$page_field}.value='{$page}'; document.getElementById('globalPaginationForm').submit(); return false;";
 
-        return '<a href="#"' . $active_class . ' onclick="' . $js_click . '">' . $label . '</a>';
+        if ($disabled) {
+            return '<li class="page-item disabled"><a class="page-link" href="#" onclick="return false;">' . $label . '</a></li>';
+        }
+
+        // 'on' ক্লাস থাকলে বুটস্ট্রাপের 'active' ক্লাস যুক্ত হবে
+        $li_class = ($class === "on") ? 'page-item active' : 'page-item';
+
+        return '<li class="' . $li_class . '"><a class="page-link" href="#" onclick="' . $js_click . '">' . $label . '</a></li>';
     }
 
     public function create_links() {
         if ($this->total_rows <= 0) {
-            return "";
+            return ""; 
         }
 
-        $html = '';
+        $html = '<ul class="pagination mb-0">';
 
         // Previous Button
         if ($this->current_page <= 1) {
-            $html .= '<a href="#" class="disabled" onclick="return false;"><i class="bi bi-chevron-left"></i></a>';
+            $html .= '<li class="page-item disabled"><a class="page-link" href="#" onclick="return false;">Previous</a></li>';
         } else {
-            $html .= $this->page_link_html($this->current_page - 1, '<i class="bi bi-chevron-left"></i>');
+            $html .= $this->page_link_html($this->current_page - 1, 'Previous');
         }
 
         // Page Numbers & Dots
         foreach ($this->page_range() as $page) {
             if ($page === "dots") {
-                $html .= '<a href="#" onclick="return false;">&hellip;</a>';
+                $html .= '<li class="page-item disabled"><a class="page-link" href="#" onclick="return false;">&hellip;</a></li>';
                 continue;
             }
 
@@ -161,10 +159,12 @@ class MY_Pagination {
 
         // Next Button
         if ($this->current_page >= $this->total_pages) {
-            $html .= '<a href="#" class="disabled" onclick="return false;"><i class="bi bi-chevron-right"></i></a>';
+            $html .= '<li class="page-item disabled"><a class="page-link" href="#" onclick="return false;">Next</a></li>';
         } else {
-            $html .= $this->page_link_html($this->current_page + 1, '<i class="bi bi-chevron-right"></i>');
+            $html .= $this->page_link_html($this->current_page + 1, 'Next');
         }
+
+        $html .= '</ul>';
 
         return $html;
     }

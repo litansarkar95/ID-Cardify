@@ -9,7 +9,13 @@
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+   <!-- Include Toastr CSS -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>backend/toastr/toastr.min.css">
   <link href="<?php echo base_url(); ?>backend/assets/css/style.css" rel="stylesheet">
+   <!-- jquery -->
+      <script src="<?php echo base_url(); ?>assets/js/jquery-3.7.1.min.js"></script>
+    <!-- Include Toastr JavaScript -->
+      <script src="<?php echo base_url(); ?>backend/toastr/toastr.min.js"></script>
 </head>
 <body data-active="dashboard">
 
@@ -30,18 +36,18 @@
           <i class="bi bi-clock"></i>
           <div><strong id="clockTime">--:--:--</strong><small id="clockDate"></small></div>
         </div>
-        <button class="icon-btn plain hide-xs"><i class="bi bi-share"></i></button>
-        <button class="icon-btn plain hide-xs"><i class="bi bi-check2"></i></button>
+        <!-- <button class="icon-btn plain hide-xs"><i class="bi bi-share"></i></button>
+        <button class="icon-btn plain hide-xs"><i class="bi bi-check2"></i></button> -->
 
         <!-- Profile -->
         <div class="dropdown">
           <button class="profile-toggle" data-bs-toggle="dropdown" data-bs-offset="0,6" aria-expanded="false" aria-label="Profile">
-            <img class="avatar" src="img/avatar.svg" alt="Rajni Superadmin">
+            <img class="avatar" src="<?php echo !empty($this->session->userdata('picture')) ? base_url($this->session->userdata('picture')) : base_url('img/avatar.svg'); ?>" alt="Rajni Superadmin">
           </button>
           <ul class="dropdown-menu dropdown-menu-end profile-menu">
             <li class="profile-head">
-              <img src="img/avatar.svg" alt="">
-              <div><strong>Rajni Superadmin</strong><small>Super Admin</small></div>
+              <img src="<?php echo !empty($this->session->userdata('picture')) ? base_url($this->session->userdata('picture')) : base_url('img/avatar.svg'); ?>" alt="">
+              <div><strong><?php echo html_escape($this->session->userdata('name')); ?></strong><small><?php echo html_escape($this->session->userdata('user_type')); ?></small></div>
             </li>
             <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> My Profile</a></li>
             <li><a class="dropdown-item" href="#"><i class="bi bi-clock-history"></i> My timesheets</a></li>
@@ -56,15 +62,35 @@
               </ul>
             </li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item logout" href="login.html"><i class="bi bi-box-arrow-right"></i> To go out</a></li>
+            <li><a class="dropdown-item logout" href="<?php echo site_url('auth/logout'); ?>"><i class="bi bi-box-arrow-right"></i> To go out</a></li>
           </ul>
         </div>
 
-        <button class="icon-btn hide-xs"><i class="bi bi-clock"></i></button>
+        <!-- <button class="icon-btn hide-xs"><i class="bi bi-clock"></i></button> -->
         <button class="icon-btn"><i class="bi bi-bell"></i><span class="dot"></span></button>
       </div>
     </header>
+<script>
+   
+    toastr.options = {
+        "closeButton": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right", 
+        "timeOut": "4000" 
+    };
 
+   <?php if($this->session->flashdata('success')): ?>
+        toastr.success("<?php echo $this->session->flashdata('success'); ?>");
+    <?php endif; ?>
+
+    <?php if($this->session->flashdata('error')): ?>
+        toastr.error("<?php echo $this->session->flashdata('error'); ?>");
+    <?php endif; ?>
+
+    <?php if($this->session->flashdata('warning')): ?>
+        toastr.warning("<?php echo $this->session->flashdata('warning'); ?>");
+    <?php endif; ?>
+</script>
     <main class="content">
     <?php
              if(isset($content)){

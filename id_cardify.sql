@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2026 at 07:10 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Generation Time: Nov 08, 2026 at 11:24 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,7 +35,7 @@ CREATE TABLE `entity_field_values` (
   `field_value` text NOT NULL COMMENT 'ইনপুট মান অথবা ছবির ফাইল পাথ',
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -51,7 +51,7 @@ CREATE TABLE `fields_master` (
   `field_type` varchar(50) NOT NULL DEFAULT 'text' COMMENT 'text, select, date, file, image ইত্যাদি',
   `is_unique` tinyint(1) NOT NULL DEFAULT 0 COMMENT '1=Unique field (যেমন Roll/ID), 0=Normal',
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `fields_master`
@@ -73,6 +73,7 @@ INSERT INTO `fields_master` (`id`, `field_key`, `field_label_en`, `field_label_b
 CREATE TABLE `institutions` (
   `id` int(11) NOT NULL,
   `reseller_id` int(11) DEFAULT NULL COMMENT 'কোন রিসেলারের অধীনে আছে (যদি থাকে)',
+  `code` varchar(100) NOT NULL,
   `name` varchar(255) NOT NULL,
   `name_bn` varchar(300) DEFAULT NULL,
   `slug` varchar(300) DEFAULT NULL,
@@ -88,16 +89,16 @@ CREATE TABLE `institutions` (
   `package_type` enum('free','paid') NOT NULL DEFAULT 'free' COMMENT 'ফ্রি নাকি পেইড প্যাকেজ',
   `is_active` tinyint(1) NOT NULL DEFAULT 1,
   `create_date` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `institutions`
 --
 
-INSERT INTO `institutions` (`id`, `reseller_id`, `name`, `name_bn`, `slug`, `type`, `mobile_no`, `email`, `website`, `address`, `signature_name`, `signature_picture`, `picture`, `wallet_balance`, `package_type`, `is_active`, `create_date`) VALUES
-(1, NULL, 'asdsa', 'dssdds', 'asdsa', 'অফিস / কোম্পানি', 'sdads', '', 'ds', '1111', NULL, NULL, NULL, '0.00', 'free', 1, 1794022293),
-(2, NULL, 'Labiba IT', 'লাবিবা আইটি', 'labiba-it', 'স্কুল / কলেজ / মাদ্রাসা', '01829107584', 'labibait4@gmail.com', 'www.labibait.com', 'Dhaka', NULL, NULL, 'আজিজ_চাচা_cdd990a4.jpg', '0.00', 'free', 1, 1794070486),
-(3, NULL, 'Labiba IT', 'লাবিবা আইটি', 'labiba-it-1', 'স্কুল / কলেজ / মাদ্রাসা', '01829107584', 'labibait4@gmail.com', 'www.labibait.com', 'Dhaka', NULL, NULL, 'আজিজ_চাচা_cdd990a41.jpg', '0.00', 'free', 1, 1794070514);
+INSERT INTO `institutions` (`id`, `reseller_id`, `code`, `name`, `name_bn`, `slug`, `type`, `mobile_no`, `email`, `website`, `address`, `signature_name`, `signature_picture`, `picture`, `wallet_balance`, `package_type`, `is_active`, `create_date`) VALUES
+(1, NULL, '', 'asdsa', 'dssdds', 'asdsa', 'অফিস / কোম্পানি', 'sdads', '', 'ds', '1111', NULL, NULL, NULL, 0.00, 'free', 1, 1794022293),
+(2, NULL, '', 'Labiba IT', 'লাবিবা আইটি', 'labiba-it', 'স্কুল / কলেজ / মাদ্রাসা', '01829107584', 'labibait4@gmail.com', 'www.labibait.com', 'Dhaka', NULL, NULL, 'আজিজ_চাচা_cdd990a4.jpg', 0.00, 'free', 1, 1794070486),
+(3, NULL, '003', 'Labiba IT', 'লাবিবা আইটি', 'labiba-it-1', 'স্কুল / কলেজ / মাদ্রাসা', '01829107584', 'labibait4@gmail.com', 'www.labibait.com', 'Dhaka', NULL, NULL, 'uploads/institutions/আজিজ_চাচা_cdd990a41.jpg', 0.00, 'free', 1, 1794070514);
 
 -- --------------------------------------------------------
 
@@ -111,12 +112,26 @@ CREATE TABLE `institution_field_groups` (
   `module_id` int(11) NOT NULL COMMENT 'module_types.id',
   `code_no` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
-  `name` varchar(250) NOT NULL COMMENT 'গ্রুপের নাম, ইনস্টিটিউট বাংলা বা ইংরেজি যেকোনো ভাষায় দিতে পারবে',
+  `title` varchar(250) NOT NULL COMMENT 'গ্রুপের নাম, ইনস্টিটিউট বাংলা বা ইংরেজি যেকোনো ভাষায় দিতে পারবে',
   `description` text DEFAULT NULL,
   `status` int(11) NOT NULL,
+  `issue_date` int(11) NOT NULL,
   `created_by` int(11) NOT NULL,
   `created_at` int(11) NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `institution_field_groups`
+--
+
+INSERT INTO `institution_field_groups` (`id`, `institution_id`, `module_id`, `code_no`, `slug`, `title`, `description`, `status`, `issue_date`, `created_by`, `created_at`) VALUES
+(1, 2, 2, '', 'crere', 'Crere', 'eeee', 1, 0, 3, 2147483647),
+(2, 3, 1, '', 'আইড-করডর-তথয-ফরম', 'আইডি কার্ডের তথ্য ফর্ম', 'আপনার আইডি কার্ড তৈরির জন্য নিচের তথ্যগুলো সঠিকভাবে পূরণ করুন এবং একটি পরিষ্কার ছবি দিন।', 1, 0, 3, 2147483647),
+(3, 3, 2, '', 'ddasd', 'ddasd', 'dssda', 1, 1795543200, 3, 2147483647),
+(4, 3, 2, '', 'asa', 'ASA', 'SSSA', 1, 1794074400, 3, 2147483647),
+(5, 3, 2, '', 'amader-bangladesh-one-link', 'amader bangladesh One link', 'ssss', 1, 1794160800, 3, 2147483647),
+(6, 3, 2, '', 'bnagladesh', 'bnagladesh', 'bnagladeshbnagladesh', 1, 1794074400, 3, 2147483647),
+(7, 3, 1, '', 'bnagladesh-1', 'bnagladesh', 'bnagladesh', 1, 1794074400, 3, 2147483647);
 
 -- --------------------------------------------------------
 
@@ -131,7 +146,19 @@ CREATE TABLE `institution_field_settings` (
   `is_required` tinyint(1) NOT NULL DEFAULT 0 COMMENT '1=Required, 0=Optional',
   `sort_order` int(11) NOT NULL DEFAULT 0 COMMENT 'সিরিয়াল সাজানোর জন্য',
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `institution_field_settings`
+--
+
+INSERT INTO `institution_field_settings` (`id`, `group_id`, `field_id`, `is_required`, `sort_order`, `created_at`) VALUES
+(10, 1, 1, 0, 1, '2026-11-08 15:01:41'),
+(11, 1, 2, 1, 2, '2026-11-08 15:01:41'),
+(12, 1, 3, 0, 3, '2026-11-08 15:01:41'),
+(13, 1, 5, 0, 4, '2026-11-08 15:01:41'),
+(14, 5, 1, 0, 1, '2026-11-08 15:47:33'),
+(15, 5, 2, 1, 1, '2026-11-08 15:47:33');
 
 -- --------------------------------------------------------
 
@@ -157,7 +184,7 @@ CREATE TABLE `login_credential` (
   `last_login_ip` varchar(45) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `login_credential`
@@ -166,7 +193,7 @@ CREATE TABLE `login_credential` (
 INSERT INTO `login_credential` (`id`, `reseller_id`, `institution_id`, `user_id`, `username`, `email`, `phone_no`, `password`, `role_id`, `otp_code`, `otp_expiry`, `remember_token`, `active`, `last_login`, `last_login_ip`, `created_at`, `updated_at`) VALUES
 (1, 0, 0, 1, 'superadmin', 'superadmin@saas.com', '01700000000', '$2y$10$sYVcvML0jteteUdNfzNCyephsQ.KQxvyXXXNMEWNMHV8UoZLAxf1i', 1, NULL, NULL, NULL, 1, NULL, NULL, '2026-11-06 08:56:59', '2026-11-06 18:37:06'),
 (2, 1, 0, 2, 'reseller', 'reseller@gmail.com', '01700000000', '$2y$10$sYVcvML0jteteUdNfzNCyephsQ.KQxvyXXXNMEWNMHV8UoZLAxf1i', 2, NULL, NULL, NULL, 1, '2026-11-06 18:42:31', '::1', '2026-11-06 08:56:59', '2026-11-06 18:42:31'),
-(3, 0, 3, 3, '018', NULL, '01829107584', '$2y$10$P4BmM.cIpobQYp0EKk3uZu/ot59zViVhmMJheEgs2iElP2rdlvxVq', 3, NULL, NULL, NULL, 1, '2026-11-07 22:57:02', '::1', '2026-11-07 22:55:14', '2026-11-07 22:57:02');
+(3, 0, 3, 3, '018', NULL, '01829107584', '$2y$10$P4BmM.cIpobQYp0EKk3uZu/ot59zViVhmMJheEgs2iElP2rdlvxVq', 3, NULL, NULL, NULL, 1, '2026-11-08 11:52:56', '::1', '2026-11-07 22:55:14', '2026-11-08 11:52:56');
 
 -- --------------------------------------------------------
 
@@ -179,7 +206,7 @@ CREATE TABLE `module_types` (
   `module_name` varchar(100) NOT NULL COMMENT 'যেমন: Student, Staff',
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1=Active, 0=Inactive',
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `module_types`
@@ -207,14 +234,14 @@ CREATE TABLE `resellers` (
   `wallet_balance` decimal(10,2) NOT NULL DEFAULT 0.00 COMMENT 'আইডি কার্ড তৈরির জন্য ব্যালেন্স',
   `is_active` tinyint(1) NOT NULL DEFAULT 1,
   `create_date` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `resellers`
 --
 
 INSERT INTO `resellers` (`id`, `name`, `name_bn`, `slug`, `mobile_no`, `email`, `address`, `picture`, `wallet_balance`, `is_active`, `create_date`) VALUES
-(2, 'reseller', 'reseller', 'reseller', 'reseller', 'reseller', 'reseller', NULL, '0.00', 1, 0);
+(2, 'reseller', 'reseller', 'reseller', 'reseller', 'reseller', 'reseller', NULL, 0.00, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -234,7 +261,7 @@ CREATE TABLE `roles` (
   `create_user` int(11) NOT NULL DEFAULT 0,
   `create_date` int(11) NOT NULL,
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -328,13 +355,13 @@ ALTER TABLE `institutions`
 -- AUTO_INCREMENT for table `institution_field_groups`
 --
 ALTER TABLE `institution_field_groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `institution_field_settings`
 --
 ALTER TABLE `institution_field_settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `login_credential`

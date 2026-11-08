@@ -24,7 +24,7 @@ public function store() {
 
         $name = $this->input->post('org_en', TRUE);
         
-        $slug = $this->create_unique_slug($name);
+        $slug = $this->main_model->create_unique_slug($name,"institutions");
 
         //picture
         $picture_name = NULL;
@@ -38,7 +38,7 @@ public function store() {
 
             if ($this->upload->do_upload('photo')) {
                 $upload_data  = $this->upload->data();
-                $picture_name = $upload_data['file_name']; 
+                $picture_name = "uploads/institutions/".$upload_data['file_name']; 
             }
         }
 
@@ -92,17 +92,4 @@ public function store() {
     }
 }
 
-private function create_unique_slug($name) {
-
-    $slug = url_title($name, 'dash', TRUE);
-    $original_slug = $slug;
-    $counter = 1;
-
-    while ($this->main_model->slug_exists($slug)) {
-        $slug = $original_slug . '-' . $counter;
-        $counter++;
-    }
-
-    return $slug;
-}
 }

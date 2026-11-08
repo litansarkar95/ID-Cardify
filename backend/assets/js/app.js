@@ -60,7 +60,7 @@
   /* Date picker: <input class="datepicker"> + calendar button */
   if (window.flatpickr) {
     document.querySelectorAll('input.datepicker').forEach(inp => {
-      const fp = flatpickr(inp, { dateFormat: 'Y-m-d', allowInput: true, disableMobile: true });
+      const fp = flatpickr(inp, { dateFormat: 'd-m-Y', allowInput: true, disableMobile: true });
       const btn = inp.parentElement.querySelector('.btn-icon');
       if (btn) btn.addEventListener('click', () => fp.open());
     });
