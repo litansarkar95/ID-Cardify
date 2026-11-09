@@ -86,7 +86,14 @@
                                             </select>
                                         </div>
                                         
-                                
+                                            <div class="col-md-4">
+                                        <label class="form-label">Form Language (ফর্মের ভাষা)</label>
+                                        <select class="form-select" name="form_language">
+                                            <option value="bn" >বাংলা (Bengali)</option>
+                                            <option value="en" >ইংরেজি (English)</option>
+                                            <option value="both" >উভয় ভাষা (Bilingual)</option>
+                                        </select>
+                                    </div>
                                         <div class="mb-3">
                                         <label class="form-label" for="description">Description</label
                                         ><textarea

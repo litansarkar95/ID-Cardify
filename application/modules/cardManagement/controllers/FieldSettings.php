@@ -8,45 +8,35 @@ class FieldSettings extends CI_Controller
   
       
 
-public function index($group_id = 1)
-{
-
-
-    $data = array();
-    $data['active'] = "field_settings";
-    $data['title'] = "Field Settings"; 
-   $data['group_id'] = $group_id;
-        $data['fields'] = $this->field_settings_model->get_fields_with_settings($group_id);
-  $data['content'] = $this->load->view("field_settings/create", $data, TRUE);
-   $this->load->view('layout/master', $data);
-
-}
-public function create($group_id = 1) { 
-    $data = array(); 
-    $data['active'] = "field_settings"; 
-    $data['title'] = "Field Settings"; 
-    $data['group_id'] = $group_id; // ১. ভিউতে পাঠানোর জন্য গ্রুপ আইডি সেট করা হলো
-    
-    // ২. মডেলে অবশ্যই $group_id পাস করতে হবে
-    $data['fields'] = $this->field_settings_model->get_fields_with_settings($group_id); 
-    
-    $data['content'] = $this->load->view("field_settings/create", $data, TRUE); 
-    $this->load->view('layout/master', $data); 
-} 
-
-public function insert() {
-    $group_id = $this->input->post('group_id');
-    $selected_fields = $this->input->post('fields'); 
-
-    if (!empty($group_id) && $this->field_settings_model->save_institution_settings($group_id, $selected_fields)) {
-        $this->session->set_flashdata('success', 'Field settings saved successfully!');
-    } else {
-        $this->session->set_flashdata('error', 'Please select at least one field or group ID missing.');
+public function index($group_id = 1) {
+        $this->create($group_id);
     }
 
-    redirect('cardManagement/fieldSettings/create/' . $group_id);
-}
+    public function create($group_id = 1) {
+        $data = array();
+        $data['active'] = "field_settings";
+        $data['title'] = "Field Settings";
+        $data['group_id'] = $group_id;
+        
+        // মডেল থেকে ক্যাটাগরি ওয়াইজ ফিল্ড ফেচ করা
+        $data['grouped_fields'] = $this->field_settings_model->get_fields_with_settings($group_id);
+      
+        $data['content'] = $this->load->view("field_settings/create", $data, TRUE);
+        $this->load->view('layout/master', $data);
+    }
 
+    public function insert() {
+        $group_id = $this->input->post('group_id');
+        $selected_fields = $this->input->post('fields');
+
+        if (!empty($group_id) && $this->field_settings_model->save_institution_settings($group_id, $selected_fields)) {
+            $this->session->set_flashdata('success', 'Field settings saved successfully!');
+        } else {
+            $this->session->set_flashdata('error', 'Please select at least one field or group ID missing.');
+        }
+        
+        redirect('cardManagement/fieldSettings/create/' . $group_id);
+    }
 
 }
 

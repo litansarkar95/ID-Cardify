@@ -112,7 +112,7 @@
                                 >
                                     <i class="icon bi bi-gear-fill"></i>
                         </a>
-        <button type="button" class="act-btn copy" title="Copy Slug" aria-label="Copy Slug" onclick="copySlug('<?php echo $row->slug; ?>')">
+       <button type="button" class="act-btn copy" title="Copy Slug" aria-label="Copy Slug" onclick="copySlug('<?php echo base_url() . "form/labiba-it-1/" . $row->slug; ?>')">
     <i class="bi bi-files"></i>
 </button>
                                 <a class="act-btn edit" href="card-create.html" title="Edit" aria-label="Edit"

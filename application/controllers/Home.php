@@ -11,4 +11,5 @@ class Home extends CI_Controller {
     $this->load->view('frontend/layouts/master', $data);
 }
 
+ 
 }
