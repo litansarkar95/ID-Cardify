@@ -15,7 +15,7 @@
                         </ul>
                     </li>
                     <li class="has-sub">
-                        <a href="services.html">সেবাসমূহ</a>
+                        <a href="<?= base_url() ?>services">সেবাসমূহ</a>
                         <ul class="sub">
                             <li><a href="form">তথ্য ফর্ম</a></li>
                             <li><a href="staff-form.html">স্টাফ / স্টুডেন্ট ফর্ম</a></li>
@@ -24,18 +24,18 @@
                             <li><a href="services.html#csv">CSV / এক্সেল এক্সপোর্ট</a></li>
                         </ul>
                     </li>
-                    <li><a href="index.html#how">কীভাবে কাজ করে</a></li>
+                    <li><a href="<?= base_url() ?>#how">কীভাবে কাজ করে</a></li>
                     <li class="has-sub">
-                        <a href="faq.html">সহায়তা</a>
+                        <a href="#">সহায়তা</a>
                         <ul class="sub">
-                            <li><a href="faq.html">সাধারণ প্রশ্ন</a></li>
-                            <li><a href="privacy.html">গোপনীয়তা নীতি</a></li>
-                            <li><a href="terms.html">শর্তাবলী</a></li>
-                            <li><a href="register.html">নতুন অ্যাকাউন্ট</a></li>
-                            <li><a href="login.html">লগইন</a></li>
+                            <li><a href="<?= base_url() ?>faq">সাধারণ প্রশ্ন</a></li>
+                            <li><a href="<?= base_url() ?>privacy">গোপনীয়তা নীতি</a></li>
+                            <li><a href="<?= base_url() ?>terms">শর্তাবলী</a></li>
+                            <li><a href="<?= base_url() ?>register">নতুন অ্যাকাউন্ট</a></li>
+                            <li><a href="<?= base_url() ?>login">লগইন</a></li>
                         </ul>
                     </li>
-                    <li><a href="<?= base_url() ?>contact">যোগাযোগ</a></li>
+                    <li><a href="<?= base_url() ?>contact-us">যোগাযোগ</a></li>
                 </ul>
                 <a href="<?= base_url() ?>register" class="btn btn-g ms-auto d-none d-lg-inline-block"
                     ><i class="bi bi-plus-circle me-1"></i>ফর্ম লিংক তৈরি করুন</a

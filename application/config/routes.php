@@ -10,5 +10,10 @@ $route["logout"] = "auth/logout";
 $route['s/(:any)'] = 'shortlink/index/$1';
 //Home
 $route["login"] = "auth/login"; 
+$route["contact-us"] = "home/contact"; 
+$route["about-us"] = "home/about"; 
+$route["faq"] = "home/faq"; 
+$route["terms"] = "home/terms"; 
+$route["privacy"] = "home/privacy"; 
 
 $route['form/(:any)/(:any)'] = 'formPortal/index/$1/$2';

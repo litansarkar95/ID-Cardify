@@ -95,9 +95,11 @@
                 <div class="row g-4">
                     <div class="col-6 col-md-3">
                         <h6>রিসোর্স</h6>
-                        <a href="about.html">আমাদের সম্পর্কে</a><a href="templates.html">ডিজাইন টেমপ্লেট</a
-                        ><a href="services.html">সেবাসমূহ</a><a href="faq.html">সাধারণ প্রশ্ন</a
-                        ><a href="contact.html">যোগাযোগ</a>
+                        <a href="<?= base_url() ?>about-us">আমাদের সম্পর্কে</a>
+                        <a href="templates.html">ডিজাইন টেমপ্লেট</a
+                        ><a href="<?= base_url() ?>services">সেবাসমূহ</a>
+                        <a href="faq.html">সাধারণ প্রশ্ন</a
+                        ><a href="<?= base_url() ?>contact-us">যোগাযোগ</a>
                     </div>
                     <div class="col-6 col-md-3">
                         <h6>অ্যাকাউন্ট</h6>

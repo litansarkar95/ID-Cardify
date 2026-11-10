@@ -70,6 +70,7 @@ public function submit() {
         'application_id'    => $application_id,
         'field_groups_id'   => $form_group_id,
         'status'            => 1,
+        'created_at'        => time(),
     );
     $this->common_model->save_data("entity_field", $data);
     $entity_field_id = $this->common_model->Id;

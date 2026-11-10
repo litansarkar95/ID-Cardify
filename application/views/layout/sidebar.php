@@ -10,7 +10,7 @@
                     >
                 </li>
        <?php 
-                    $id_card_setup = ['field_settings', 'field_groups','subject','subject_group', 'academic_years'];
+                    $id_card_setup = ['field_settings', 'field_groups','applications','subject_group', 'academic_years'];
                     $is_active = in_array($active, $id_card_setup);
                 ?>
                  <li >
@@ -22,7 +22,7 @@
                         <!-- <li><a href="<?= base_url(); ?>cardManagement/fieldSettings" class="<?php echo ($active == 'field_settings') ? 'active' : ''; ?>">Field Settings</a></li> -->
                         <li><a href="<?= base_url(); ?>cardManagement/fieldgroups" class="<?php echo ($active == 'field_groups') ? 'active' : ''; ?>">Field Groups </a></li>
                         <li><a href="roles.html">Field Assignment</a></li>
-                        <li><a href="roles.html">Applications</a></li>
+                        <li><a href="<?= base_url(); ?>cardManagement/applications" class="<?php echo ($active == 'applications') ? 'active' : ''; ?>">Applications</a></li>
                         <li><a href="roles.html">Master Fields</a></li>
                         <li><a href="roles.html">Module Types</a></li>
                     </ul>

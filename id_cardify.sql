@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2026 at 04:29 PM
+-- Generation Time: Nov 10, 2026 at 07:08 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -33,9 +33,16 @@ CREATE TABLE `entity_field` (
   `application_id` varchar(255) NOT NULL,
   `field_groups_id` int(11) NOT NULL,
   `status` int(11) NOT NULL,
-  `created_at` datetime NOT NULL,
+  `created_at` int(11) NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `entity_field`
+--
+
+INSERT INTO `entity_field` (`id`, `institution_id`, `application_id`, `field_groups_id`, `status`, `created_at`, `updated_at`) VALUES
+(4, 3, 'SUB-6AF34970CA249', 16, 1, 0, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -51,6 +58,21 @@ CREATE TABLE `entity_field_values` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `entity_field_values`
+--
+
+INSERT INTO `entity_field_values` (`id`, `entity_field_id`, `field_id`, `field_value`, `created_at`, `updated_at`) VALUES
+(62, 4, 1, 'Md Litan Sarkar', '2026-11-10 22:42:24', '2026-11-10 22:42:24'),
+(63, 4, 8, 'male', '2026-11-10 22:42:24', '2026-11-10 22:42:24'),
+(64, 4, 9, 'islam', '2026-11-10 22:42:24', '2026-11-10 22:42:24'),
+(65, 4, 10, 'A+', '2026-11-10 22:42:24', '2026-11-10 22:42:24'),
+(66, 4, 22, 'Offercier', '2026-11-10 22:42:24', '2026-11-10 22:42:24'),
+(67, 4, 29, '14223333', '2026-11-10 22:42:24', '2026-11-10 22:42:24'),
+(68, 4, 34, '', '2026-11-10 22:42:24', '2026-11-10 22:42:24'),
+(69, 4, 35, '333', '2026-11-10 22:42:24', '2026-11-10 22:42:24'),
+(70, 4, 36, '333', '2026-11-10 22:42:24', '2026-11-10 22:42:24');
 
 -- --------------------------------------------------------
 
@@ -357,7 +379,7 @@ CREATE TABLE `login_credential` (
 INSERT INTO `login_credential` (`id`, `reseller_id`, `institution_id`, `user_id`, `username`, `email`, `phone_no`, `password`, `role_id`, `otp_code`, `otp_expiry`, `remember_token`, `active`, `last_login`, `last_login_ip`, `created_at`, `updated_at`) VALUES
 (1, 0, 0, 1, 'superadmin', 'superadmin@saas.com', '01700000000', '$2y$10$sYVcvML0jteteUdNfzNCyephsQ.KQxvyXXXNMEWNMHV8UoZLAxf1i', 1, NULL, NULL, NULL, 1, NULL, NULL, '2026-11-06 08:56:59', '2026-11-06 18:37:06'),
 (2, 1, 0, 2, 'reseller', 'reseller@gmail.com', '01700000000', '$2y$10$sYVcvML0jteteUdNfzNCyephsQ.KQxvyXXXNMEWNMHV8UoZLAxf1i', 2, NULL, NULL, NULL, 1, '2026-11-06 18:42:31', '::1', '2026-11-06 08:56:59', '2026-11-06 18:42:31'),
-(3, 0, 3, 3, '018', NULL, '01829107584', '$2y$10$P4BmM.cIpobQYp0EKk3uZu/ot59zViVhmMJheEgs2iElP2rdlvxVq', 3, NULL, NULL, NULL, 1, '2026-11-10 18:18:45', '::1', '2026-11-07 22:55:14', '2026-11-10 18:18:45');
+(3, 0, 3, 3, '018', NULL, '01829107584', '$2y$10$P4BmM.cIpobQYp0EKk3uZu/ot59zViVhmMJheEgs2iElP2rdlvxVq', 3, NULL, NULL, NULL, 1, '2026-11-10 22:25:39', '::1', '2026-11-07 22:55:14', '2026-11-10 22:25:39');
 
 -- --------------------------------------------------------
 
@@ -550,13 +572,13 @@ ALTER TABLE `short_links`
 -- AUTO_INCREMENT for table `entity_field`
 --
 ALTER TABLE `entity_field`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `entity_field_values`
 --
 ALTER TABLE `entity_field_values`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `fields_master`

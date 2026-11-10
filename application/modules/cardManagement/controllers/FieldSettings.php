@@ -18,7 +18,6 @@ public function index($group_id = 1) {
         $data['title'] = "Field Settings";
         $data['group_id'] = $group_id;
         
-        // মডেল থেকে ক্যাটাগরি ওয়াইজ ফিল্ড ফেচ করা
         $data['grouped_fields'] = $this->field_settings_model->get_fields_with_settings($group_id);
       
         $data['content'] = $this->load->view("field_settings/create", $data, TRUE);
@@ -37,6 +36,43 @@ public function index($group_id = 1) {
         
         redirect('cardManagement/fieldSettings/create/' . $group_id);
     }
+
+    
+public function list($id)
+{
+
+
+    $data = array();
+    $data['active'] = "field_groups";
+    $data['title'] = "Entity Field"; 
+    $search = $this->input->post('search', TRUE);
+    $data['group'] = $this->field_settings_model->get_group_info($id);
+    $total_rows = $this->field_settings_model->count_entity_field($id, $search);
+
+  
+
+        $this->pagination->initialize([
+            "total_rows" => $total_rows,
+            "per_page"   => 10,
+            "action"     => base_url("cardManagement/fieldSettings/list/$id"),
+            "page_field" => "page",
+            "label"      => "entries",
+        ]);
+        $pagination = $this->pagination->get_data();
+
+        $data["allPdt"] = $this->field_settings_model->get_entity_field(
+            $id,
+            $pagination["per_page"], 
+            $pagination["offset"],
+             $search
+        );
+        
+    $data = array_merge($data, $pagination);
+    $data['content'] = $this->load->view("field_settings/list", $data, TRUE);
+    $this->load->view('layout/master', $data);
+
+}
+
 
 }
 

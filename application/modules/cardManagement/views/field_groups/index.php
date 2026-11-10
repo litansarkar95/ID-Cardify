@@ -112,6 +112,16 @@
                                 >
                                     <i class="icon bi bi-gear-fill"></i>
                         </a>
+                             <a
+    href="<?php echo base_url()."cardManagement/fieldSettings/list/$row->id" ?>"
+    class="act-btn view"
+    type="button"
+    title="View"
+    aria-label="View"
+    data-print-row
+>
+    <i class="icon bi bi-eye"></i>
+</a>
        <button type="button" class="act-btn copy" title="Copy Slug" aria-label="Copy Slug" onclick="copySlug('<?php echo  $row->short_url; ?>')">
     <i class="bi bi-files"></i>
 </button>
