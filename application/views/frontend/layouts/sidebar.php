@@ -4,7 +4,7 @@
                 <a class="logo logo-sm" href="<?= base_url() ?>"><i>ID</i><span>Cardify</span></a>
                 <ul class="dnav d-none d-lg-flex">
                     <li><a href="<?= base_url() ?>">হোম</a></li>
-                    <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+                    <li><a href="<?= base_url() ?>about-us">আমাদের সম্পর্কে</a></li>
                     <li class="has-sub">
                         <a href="templates.html">ডিজাইন টেমপ্লেট</a>
                         <ul class="sub">
@@ -17,7 +17,7 @@
                     <li class="has-sub">
                         <a href="services.html">সেবাসমূহ</a>
                         <ul class="sub">
-                            <li><a href="form.html">তথ্য ফর্ম</a></li>
+                            <li><a href="form">তথ্য ফর্ম</a></li>
                             <li><a href="staff-form.html">স্টাফ / স্টুডেন্ট ফর্ম</a></li>
                             <li><a href="services.html#print">কার্ড ডিজাইন ও প্রিন্ট</a></li>
                             <li><a href="services.html#qr">QR কোড কার্ড</a></li>

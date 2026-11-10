@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>IDGen – অনলাইনে আইডি কার্ড তৈরি ও প্রিন্ট করুন</title>
+         <title><?php echo isset($title) ? $title : 'Labiba IT'; ?></title>
         <link
             href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap"
             rel="stylesheet"
@@ -23,8 +23,8 @@
         <div class="topbar">
             <div class="container d-flex justify-content-between align-items-center flex-wrap gap-1">
                 <div class="tb-left">
-                    <a href="mailto:support@yourdomain.com"><i class="bi bi-envelope me-1"></i>support@yourdomain.com</a
-                    ><a href="tel:+880 1700-000000"><i class="bi bi-telephone me-1"></i>+880 1700-000000</a>
+                    <a href="mailto:labibait4@gmail.com"><i class="bi bi-envelope me-1"></i>labibait4@gmail.com</a
+                    ><a href="tel:+880 1540-701151"><i class="bi bi-telephone me-1"></i>+880 1540-701151</a>
                 </div>
                 <div class="tb-right">
                     <span class="tb-soc"
@@ -81,7 +81,7 @@
                     </div>
                     <div class="col-6 col-lg-3 d-flex align-items-center">
                         <i class="bi bi-headset"></i>
-                        <div><b>সাপোর্ট</b><br /><small>support@yourdomain.com</small></div>
+                        <div><b>সাপোর্ট</b><br /><small>+880 1540-701151</small></div>
                     </div>
                     <div class="col-6 col-lg-3 d-flex align-items-center">
                         <i class="bi bi-file-earmark-spreadsheet"></i>
@@ -107,8 +107,8 @@
                     <div class="col-md-6">
                         <h6>যোগাযোগ</h6>
                         <div class="mb-1"><i class="bi bi-clock me-2"></i>শনি – বৃহস্পতি / সকাল ১০টা – সন্ধ্যা ৬টা</div>
-                        <div class="mb-1"><i class="bi bi-envelope me-2"></i>support@yourdomain.com</div>
-                        <div class="mb-1"><i class="bi bi-telephone me-2"></i>+880 1700-000000</div>
+                        <div class="mb-1"><i class="bi bi-envelope me-2"></i>labibait4@gmail.com</div>
+                        <div class="mb-1"><i class="bi bi-telephone me-2"></i>+880 1540-701151</div>
                         <div><i class="bi bi-geo-alt me-2"></i>ঢাকা, বাংলাদেশ</div>
                     </div>
                 </div>
@@ -126,8 +126,8 @@
                     </div>
                     <div class="col-md-4 text-center">© 2026 IDGen. সর্বস্বত্ব সংরক্ষিত।</div>
                     <div class="col-md-4 text-center text-md-end copy-links">
-                        <a href="privacy.html">গোপনীয়তা নীতি</a><span>|</span><a href="terms.html">শর্তাবলী</a
-                        ><span>|</span><a href="contact.html">যোগাযোগ</a>
+                        <a href="<?= base_url() ?>privacy">গোপনীয়তা নীতি</a><span>|</span><a href="<?= base_url() ?>terms">শর্তাবলী</a
+                        ><span>|</span><a href="<?= base_url() ?>contact-us">যোগাযোগ</a>
                     </div>
                 </div>
             </div>

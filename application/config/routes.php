@@ -6,7 +6,8 @@ $route['404_override'] = 'error_404';
 $route['translate_uri_dashes'] = FALSE;
 $route["logout"] = "auth/logout"; 
  
-
+//url
+$route['s/(:any)'] = 'shortlink/index/$1';
 //Home
 $route["login"] = "auth/login"; 
 

@@ -15,7 +15,17 @@ public function create_unique_slug($title, $table) {
 
     return $slug;
 }
+public function get_institutions_slug_by_id($id) {
+        $this->db->select('slug');
+        $this->db->from('institutions');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
 
+        if ($query->num_rows() > 0) {
+            return $query->row()->slug;
+        }
+        return NULL;
+    }
 public function slug_exists($slug, $table) {
     $this->db->where('slug', $slug);
     $query = $this->db->get($table);

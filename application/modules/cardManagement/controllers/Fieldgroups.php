@@ -63,6 +63,15 @@ public function insert() {
         $slug = $this->main_model->create_unique_slug($title,"institution_field_groups");
 
        
+          //short link
+           $institution_id = $this->session->userdata('institution_id');
+            $inst = $this->main_model->get_institutions_slug_by_id($institution_id);
+             $long_url = base_url() . 'form/' . $inst."/".$slug;
+
+            $short_link = get_short_qr_link($slug, $long_url, 'institution_field_groups');
+
+            //
+
         $data = array(
             'institution_id'       => $this->session->userdata('institution_id'), 
             'module_id'            => $this->input->post('module_id', TRUE),
@@ -70,16 +79,18 @@ public function insert() {
             'slug'                 => $slug,
             'description'          => $this->input->post('description', TRUE),
             'status'               => $this->input->post('status', TRUE),
+            'form_language'        => $this->input->post('form_language', TRUE),
+            'short_url'            => $short_link,
             'issue_date'           => strtotime($this->input->post('issue_date', TRUE)),
             'created_by'           => $this->session->userdata('login_id'), 
             
         );
 
 
-   
 
         if ($this->common_model->save_data("institution_field_groups", $data)) {
             $id  = $this->common_model->Id;
+            
 
 
             $this->session->set_flashdata('success', 'প্রতিষ্ঠান সফলভাবে যুক্ত করা হয়েছে!');
