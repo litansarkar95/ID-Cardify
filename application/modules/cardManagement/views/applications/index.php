@@ -91,7 +91,7 @@
                           <td><?php echo $i++; ?></td>
                             <td><?php echo htmlspecialchars($row->group_title); ?></td>
                             <td><?php echo htmlspecialchars($row->application_id); ?></td>
-                            <td><?php echo date("d-m-Y",$row->created_at); ?></td>
+                            <td><?php echo date("d-m-Y H:i:s",$row->created_at); ?></td>
                            
                         <td class="act-col text-end">
                             <div class="act-group">

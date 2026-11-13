@@ -6,7 +6,7 @@ class FormPortal extends CI_Controller {
  public function index($company_slug, $form_slug) {
       $data = array();
      $data['active'] = "custom_404";
-     $data['title'] = "404"; 
+     
         
         $result = $this->main_model->get_form_details($company_slug, $form_slug);
 
@@ -14,10 +14,10 @@ class FormPortal extends CI_Controller {
              redirect('error_404'); 
             return;
         }
-
+        $data['title'] = $result['form']->title; 
         $data['company'] = $result['company'];
         $data['form']    = $result['form'];
-      $data['grouped_fields'] = $this->main_model->get_public_fields_with_categories($result['form']->id);
+        $data['grouped_fields'] = $this->main_model->get_public_fields_with_categories($result['form']->id);
         $data['content'] = $this->load->view("frontend/home/form", $data, TRUE);
         $this->load->view('frontend/layouts/master', $data);
     }

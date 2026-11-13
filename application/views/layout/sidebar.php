@@ -27,9 +27,9 @@
                         <li><a href="roles.html">Module Types</a></li>
                     </ul>
                 </li>
-        <li><a class="menu-link" href="badge-maker.html"><i class="icon bi bi-person-vcard"></i><span class="label">Badge Maker</span></a></li>
-        <li><a class="menu-link" href="designs.html"><i class="icon bi bi-collection"></i><span class="label">My Designs</span></a></li>
-        <li><a class="menu-link" href="templates.html"><i class="icon bi bi-grid-1x2"></i><span class="label">Templates</span></a></li>
+        <li><a class="menu-link" href="<?= base_url(); ?>main/badgemake" class="<?php echo ($active == 'badge_make') ? 'active' : ''; ?>"><i class="icon bi bi-person-vcard"></i><span class="label">Badge Maker</span></a></li>
+        <li><a class="menu-link" href="<?= base_url(); ?>main/designs"><i class="icon bi bi-collection"></i><span class="label"> Designs</span></a></li>
+        <li><a class="menu-link" href="<?= base_url(); ?>main/templates"><i class="icon bi bi-grid-1x2"></i><span class="label">Templates</span></a></li>
         <li>
           <a class="menu-link" data-bs-toggle="collapse" href="#sub-cardmgmt" aria-expanded="false">
             <i class="icon bi bi-credit-card-2-front"></i><span class="label">Card Management</span><i class="bi bi-chevron-left chev"></i>
